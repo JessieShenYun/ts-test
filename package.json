@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack serve --env=development --config ./build/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --env=production --config ./build/webpack.config.js"
+    "build": "rm -rf ./publish && webpack --env=production --config ./build/webpack.config.js",
+    "watch": "tsc -w --outDir ./dest"
   },
   "keywords": [],
   "author": "",

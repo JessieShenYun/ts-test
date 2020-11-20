@@ -7,7 +7,7 @@ module.exports = {
         'index': './src/index.ts' // 入口文件
     },
     output: {
-        path: path.resolve(process.cwd(), 'dist'),
+        path: path.resolve(process.cwd(), 'publish'),
     },
     resolve: {
         extensions: ['.js', '.ts', '.tsx']
@@ -26,7 +26,7 @@ module.exports = {
     plugins: [
       new webpack.ProgressPlugin(),
       new HtmlWebpackPlugin({
-        template: './src/tpl/index.html'
+        template: './src/index.html'
       })
     ],
     optimization: {
