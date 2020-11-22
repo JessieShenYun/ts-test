@@ -84,3 +84,165 @@ declare enum Enum {
   B,
   C = 2
 }
+
+// 用一个变量定义函数类型
+let add1 : (x: number, y: number) => number
+
+// 定义函数类型接口
+interface Add1 {
+  (x: number, y: number): number
+}
+
+// 类型别名
+type Add2 = (x: number, y: number) => number
+
+let sum: Add2 = (a, b)=> a + b
+
+// 混合类型接口，一个接口既可以定义一个函数，也可以拥有属性和方法
+interface Lib {
+  () : void;
+  version: string;
+  doSomething(): void
+}
+
+let getLib = () => {
+  let lib: Lib = (() => {}) as Lib
+  lib.version = "1.0.1"
+  lib.doSomething = () => {}
+  return lib
+}
+
+// 创建实例
+let lib1 = getLib()
+lib1()
+lib1.version = "1.0.2"
+
+// 类
+class Dog {
+  constructor(name: string) {
+    this.name = name
+  }
+  name: string = "dog";
+  run(){}
+  private pri(){} // 私有成员
+  protected pro(){} // 受保护成员
+  static food: string = 'bones'
+}
+console.log(Dog.prototype) // 不包含name属性，包含run方法，name属性是实例属性，run是原型方法
+let dog = new Dog('wangwang')
+console.log(dog) // 包含name属性，不包含run方法
+// dog.pri()
+// console.log(dog.food)
+
+// Dog的子类
+class Husky extends Dog {
+  constructor(name: string, color: string) {
+    super(name) // 父类的实例
+    this.color = color
+    this.pro() // protected的成员可以被继承
+  }
+  color: string
+}
+console.log(Dog.food)
+
+// 抽象类
+abstract class Animal {
+  eat(): void {
+    console.log('eat fish')
+  }
+  abstract sleep():void // 抽象方法
+}
+
+class Cat extends Animal {
+  constructor(name: string) {
+    super()
+    this.name = name
+  }
+  name: string
+  sleep() {
+    console.log('cat is sleeping')
+  }
+}
+
+class Duck extends Animal {
+  sleep() {
+    console.log('duck sleep')
+  }
+}
+
+let cat = new Cat('miaomiao')
+let duck = new Duck()
+
+let animals: Animal[] = [cat, duck]
+animals.forEach((i) => {
+  i.sleep()
+})
+
+// let animal = new Animal()  无法创建抽象类的实例
+
+// 类的链式调用
+class WorkFlow {
+  step1() {
+    return this
+  }
+  step2() {
+    return this
+  }
+}
+
+new WorkFlow().step1().step2() // 链式调用
+
+class MyFlow extends WorkFlow {
+  next() {
+    return this
+  }
+}
+
+new MyFlow().next().step1().next().step2()
+
+interface Human {
+  name: string;
+  eat(): void
+}
+
+// 用类实现一个接口
+class Asian implements Human {
+  constructor(name: string){
+    this.name = name
+  }
+  name: string
+  eat() {}
+  sleep() {}
+}
+
+interface Man extends Human {
+  speak(): void
+}
+
+interface Child {
+  cry(): void
+}
+
+interface Boy extends Man, Child {}
+
+let boy: Boy = {
+  eat() {},
+  name: '',
+  speak() {},
+  cry() {},
+}
+
+class Auto {
+  state = 1
+  private state2 = 2
+}
+
+interface AutoInterface extends Auto {
+
+}
+
+// class C implements AutoInterface {
+//   state =  1
+// }
+
+class Bus extends Auto implements AutoInterface {}
