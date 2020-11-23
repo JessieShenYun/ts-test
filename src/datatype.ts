@@ -246,3 +246,80 @@ interface AutoInterface extends Auto {
 // }
 
 class Bus extends Auto implements AutoInterface {}
+
+// 泛型
+function log<T>(value: T): T {
+  console.log(value)
+  return value;
+}
+
+// 调用方式
+log<string[]>(['a', 'b'])
+log(['a','b'])
+
+// 用泛型定义一个函数别名
+// type Log = <T>(value: T) => T
+
+// 泛型接口，等价于类型别名
+interface Log {
+  <T>(value: T): T
+}
+
+// 以下泛型需要指定类型
+interface Log2<T = string> {
+  (value: T) : T
+}
+// let log2: Log2<number> = log
+
+// 泛型类
+class Animals<T> {
+  run(value: T): T {
+    console.log(value)
+    return value
+  }
+}
+let rabbit = new Animals<number>()
+rabbit.run(2)
+let chicken = new Animals()
+chicken.run('2')
+
+// 定义一个接口来描述约束条件，创建一个包含 .length属性的接口
+interface Length {
+  length: number
+}
+// 使用这个接口和extends关键字来实现约束
+function LogId<T extends Length>(value: T): T {
+  console.log(value.length)
+  return value
+}
+
+enum Fruit { Apple, Banana }
+let fruit: Fruit.Apple = Fruit.Apple
+let no: number = Fruit.Apple
+console.log(fruit,Fruit,no, 'fff')
+
+// 类型保护
+class Java {
+  helloJava() {
+    console.log('java')
+  }
+}
+class JavaScript {
+  helloJavaScript() {
+    console.log('javascript')
+  }
+}
+enum Type { Strong, Weak }
+
+function isJava(lang: Java | JavaScript): lang is Java {
+  return (lang as Java).helloJava !== undefined
+}
+
+function getLang(type: Type) {
+  let lang = type === Type.Strong ? new Java() : new JavaScript()
+  if(isJava(lang)) {
+    lang.helloJava()  // 类型保护区块
+  } else {
+    lang.helloJavaScript()
+  }
+}

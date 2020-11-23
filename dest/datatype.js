@@ -213,3 +213,73 @@ var Bus = /** @class */ (function (_super) {
     }
     return Bus;
 }(Auto));
+// 泛型
+function log(value) {
+    console.log(value);
+    return value;
+}
+// 调用方式
+log(['a', 'b']);
+log(['a', 'b']);
+// let log2: Log2<number> = log
+// 泛型类
+var Animals = /** @class */ (function () {
+    function Animals() {
+    }
+    Animals.prototype.run = function (value) {
+        console.log(value);
+        return value;
+    };
+    return Animals;
+}());
+var rabbit = new Animals();
+rabbit.run(2);
+var chicken = new Animals();
+chicken.run('2');
+// 使用这个接口和extends关键字来实现约束
+function LogId(value) {
+    console.log(value.length);
+    return value;
+}
+var Fruit;
+(function (Fruit) {
+    Fruit[Fruit["Apple"] = 0] = "Apple";
+    Fruit[Fruit["Banana"] = 1] = "Banana";
+})(Fruit || (Fruit = {}));
+var fruit = Fruit.Apple;
+var no = Fruit.Apple;
+console.log(fruit, Fruit, no, 'fff');
+// 类型保护
+var Java = /** @class */ (function () {
+    function Java() {
+    }
+    Java.prototype.helloJava = function () {
+        console.log('java');
+    };
+    return Java;
+}());
+var JavaScript = /** @class */ (function () {
+    function JavaScript() {
+    }
+    JavaScript.prototype.helloJavaScript = function () {
+        console.log('javascript');
+    };
+    return JavaScript;
+}());
+var Type;
+(function (Type) {
+    Type[Type["Strong"] = 0] = "Strong";
+    Type[Type["Weak"] = 1] = "Weak";
+})(Type || (Type = {}));
+function isJava(lang) {
+    return lang.helloJava !== undefined;
+}
+function getLang(type) {
+    var lang = type === Type.Strong ? new Java() : new JavaScript();
+    if (isJava(lang)) {
+        lang.helloJava(); // 类型保护区块
+    }
+    else {
+        lang.helloJavaScript();
+    }
+}
