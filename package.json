@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/index.ts",
   "scripts": {
-    "start": "webpack serve --env=development --config ./build/webpack.config.js",
+    "start": "webpack serve --env=development --config ./build/webpack.config.js --port=3030",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./publish && webpack --env=production --config ./build/webpack.config.js",
     "watch": "tsc -w --outDir ./dest"

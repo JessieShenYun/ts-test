@@ -14,3 +14,4 @@ exports.getValues = getValues;
 // 索引类型的查询操作符 keyof T
 console.log(getValues(obj, ['a']), 'getValues');
 // Exclude<T, U>
+console.log(Shape.circle(2), '111');

@@ -31,4 +31,6 @@ type T5 = NotNull<string | number | null>
 
 // Exclude<T, U>
 
+console.log(Shape.circle(2), '111'
+)
 
