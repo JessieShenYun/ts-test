@@ -1,10 +1,7 @@
-import { str } from './datatype'
-import { getValues } from './type'
+import './es6/c'
 
 let dom = document.querySelector('.app')
 
 if (dom) {
-  dom.innerHTML = str
+  dom.innerHTML = 'hello'
 }
-
-console.log(getValues)

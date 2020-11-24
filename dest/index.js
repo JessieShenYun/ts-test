@@ -1,9 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var datatype_1 = require("./datatype");
-var type_1 = require("./type");
+require("./es6/c");
 var dom = document.querySelector('.app');
 if (dom) {
-    dom.innerHTML = datatype_1.str;
+    dom.innerHTML = 'hello';
 }
-console.log(type_1.getValues);
