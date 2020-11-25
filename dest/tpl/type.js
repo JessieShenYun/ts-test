@@ -13,5 +13,15 @@ function getValues(obj, keys) {
 exports.getValues = getValues;
 // 索引类型的查询操作符 keyof T
 console.log(getValues(obj, ['a']), 'getValues');
-// Exclude<T, U>
-console.log(Shape.circle(2), '111');
+var a = {
+    x: 1,
+    y: 2,
+    foo: function (bar) {
+        return bar;
+    }
+};
+function Lib() { }
+(function (Lib) {
+    Lib.version = '1.0';
+})(Lib || (Lib = {}));
+console.log(Lib.version);

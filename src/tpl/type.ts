@@ -5,7 +5,7 @@ let obj = {
   c: 3
 }
 
-export function getValues<T, K extends keyof T>(obj: T,keys:K[]): T[K][] {
+export function getValues<T, K extends keyof T>(obj: T, keys: K[]): T[K][] {
   return keys.map(item => obj[item])
 }
 
@@ -31,6 +31,31 @@ type T5 = NotNull<string | number | null>
 
 // Exclude<T, U>
 
-console.log(Shape.circle(2), '111'
-)
+// console.log(Shape.circle(2), '111'
+// )
 
+interface A {
+  x: number;
+  // y: string;
+  foo(bar: number): number
+  foo(bar: 'a'): number
+}
+interface A {
+  y: number;
+  foo(bar: string): string
+  foo(bar: 'b'): number
+}
+
+let a: A = {
+  x: 1,
+  y: 2,
+  foo(bar: any) {
+    return bar
+  }
+}
+
+function Lib() {}
+namespace Lib {
+  export let version = '1.0'
+}
+console.log(Lib.version)
