@@ -1,0 +1,13 @@
+{
+  "files": [
+    "src/a.ts"
+  ],
+  "include": [
+    // "src"
+    // "src/*"  // 匹配src下的一级目录
+    "src/*/*"   // 匹配src下的二级目录
+  ],
+  "exclude": [
+    "src/lib"
+  ]
+}
