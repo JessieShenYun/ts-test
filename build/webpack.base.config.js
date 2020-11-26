@@ -1,6 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack');
+// const ForkTsCheckWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const { CheckerPlugin } = require('awesome-typescript-loader')
 
 module.exports = {
     entry: {
@@ -17,7 +19,11 @@ module.exports = {
             {
                 test: /\.tsx?$/i,
                 use: [{
-                    loader: 'ts-loader'
+                    // loader: 'ts-loader',
+                    loader: "awesome-typescript-loader",
+                    options: {
+                        transpileOnly: true // 快速构建模式，开启后只做语言转换，不做类型检查
+                    }
                 }],
                 exclude: /node_modules/
             }
@@ -27,7 +33,9 @@ module.exports = {
       new webpack.ProgressPlugin(),
       new HtmlWebpackPlugin({
         template: './src/index.html'
-      })
+      }),
+    //   new ForkTsCheckWebpackPlugin()
+    new CheckerPlugin()
     ],
     optimization: {
         splitChunks: {
