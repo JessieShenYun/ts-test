@@ -54,7 +54,7 @@ let a: A = {
   }
 }
 
-function Lib() {}
+function Lib() { }
 namespace Lib {
   export let version = '1.0'
 }

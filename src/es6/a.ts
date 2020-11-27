@@ -15,15 +15,15 @@ export interface A {
 }
 
 // 导出函数
-export function add() {}
+export function add() { }
 
 // 导出起别名
-function g() {}
+function g() { }
 export { g as G }
 
 // 默认导出，无需函数名
-export default function() {
+export default function () {
   console.log('default export')
 }
 
-export { str as hello} from './b'
+export { str as hello } from './b'

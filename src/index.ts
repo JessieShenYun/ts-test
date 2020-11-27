@@ -2,11 +2,9 @@
 // import './tpl/type'
 import './libs/index'
 
-let dom = document.querySelector('.app')
+const dom = document.querySelector('.app')
+const hello: string = 'hello'
 
 if (dom) {
-  dom.innerHTML = 'hello'
+  dom.innerHTML = hello
 }
-let a: string = 'sss'
-
-a = 1

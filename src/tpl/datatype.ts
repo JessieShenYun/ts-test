@@ -4,21 +4,21 @@ export let num: number = 123
 export let str: string = 'abc1'
 
 // 数组
-export let arr1: number[] = [1,2,3]
+export let arr1: number[] = [1, 2, 3]
 export let arr2: Array<number | string> = [1, 2, 3, '4']
 
 // 元组
 export let tuple: [number, string] = [3, 'abc']
 
 // 函数
-let add = (x: number,y: number) => x + y
+let add = (x: number, y: number) => x + y
 let compute: (x: number, y: number) => number = (x, y) => x + y
 
 // 对象
-let obj: { x: number, y: number} = {x: 1, y: 2}
+let obj: { x: number, y: number } = { x: 1, y: 2 }
 
 // symbol
-let s1 : symbol = Symbol()
+let s1: symbol = Symbol()
 let s2 = Symbol()
 console.log(s1 === s2)   // false
 
@@ -27,7 +27,7 @@ let un: undefined = undefined
 let nu: null = null
 
 // viod
-let noReturn = () => {}
+let noReturn = () => { }
 
 // any
 let x: any
@@ -37,7 +37,7 @@ let error = () => {
   throw new Error('error')
 }
 let endless = () => {
-  while(true) {}
+  while (true) { }
 }
 
 // 枚举类型
@@ -86,7 +86,7 @@ declare enum Enum {
 }
 
 // 用一个变量定义函数类型
-let add1 : (x: number, y: number) => number
+let add1: (x: number, y: number) => number
 
 // 定义函数类型接口
 interface Add1 {
@@ -96,19 +96,19 @@ interface Add1 {
 // 类型别名
 type Add2 = (x: number, y: number) => number
 
-let sum: Add2 = (a, b)=> a + b
+let sum: Add2 = (a, b) => a + b
 
 // 混合类型接口，一个接口既可以定义一个函数，也可以拥有属性和方法
 interface Lib {
-  () : void;
+  (): void;
   version: string;
   doSomething(): void
 }
 
 let getLib = () => {
-  let lib: Lib = (() => {}) as Lib
+  let lib: Lib = (() => { }) as Lib
   lib.version = "1.0.1"
-  lib.doSomething = () => {}
+  lib.doSomething = () => { }
   return lib
 }
 
@@ -123,9 +123,9 @@ class Dog {
     this.name = name
   }
   name: string = "dog";
-  run(){}
-  private pri(){} // 私有成员
-  protected pro(){} // 受保护成员
+  run() { }
+  private pri() { } // 私有成员
+  protected pro() { } // 受保护成员
   static food: string = 'bones'
 }
 console.log(Dog.prototype) // 不包含name属性，包含run方法，name属性是实例属性，run是原型方法
@@ -150,7 +150,7 @@ abstract class Animal {
   eat(): void {
     console.log('eat fish')
   }
-  abstract sleep():void // 抽象方法
+  abstract sleep(): void // 抽象方法
 }
 
 class Cat extends Animal {
@@ -207,12 +207,12 @@ interface Human {
 
 // 用类实现一个接口
 class Asian implements Human {
-  constructor(name: string){
+  constructor(name: string) {
     this.name = name
   }
   name: string
-  eat() {}
-  sleep() {}
+  eat() { }
+  sleep() { }
 }
 
 interface Man extends Human {
@@ -223,13 +223,13 @@ interface Child {
   cry(): void
 }
 
-interface Boy extends Man, Child {}
+interface Boy extends Man, Child { }
 
 let boy: Boy = {
-  eat() {},
+  eat() { },
   name: '',
-  speak() {},
-  cry() {},
+  speak() { },
+  cry() { },
 }
 
 class Auto {
@@ -245,7 +245,7 @@ interface AutoInterface extends Auto {
 //   state =  1
 // }
 
-class Bus extends Auto implements AutoInterface {}
+class Bus extends Auto implements AutoInterface { }
 
 // 泛型
 function log<T>(value: T): T {
@@ -255,7 +255,7 @@ function log<T>(value: T): T {
 
 // 调用方式
 log<string[]>(['a', 'b'])
-log(['a','b'])
+log(['a', 'b'])
 
 // 用泛型定义一个函数别名
 // type Log = <T>(value: T) => T
@@ -267,7 +267,7 @@ interface Log {
 
 // 以下泛型需要指定类型
 interface Log2<T = string> {
-  (value: T) : T
+  (value: T): T
 }
 // let log2: Log2<number> = log
 
@@ -296,7 +296,7 @@ function LogId<T extends Length>(value: T): T {
 enum Fruit { Apple, Banana }
 let fruit: Fruit.Apple = Fruit.Apple
 let no: number = Fruit.Apple
-console.log(fruit,Fruit,no, 'fff')
+console.log(fruit, Fruit, no, 'fff')
 
 // 类型保护
 class Java {
@@ -317,7 +317,7 @@ function isJava(lang: Java | JavaScript): lang is Java {
 
 function getLang(type: Type) {
   let lang = type === Type.Strong ? new Java() : new JavaScript()
-  if(isJava(lang)) {
+  if (isJava(lang)) {
     lang.helloJava()  // 类型保护区块
   } else {
     lang.helloJavaScript()
