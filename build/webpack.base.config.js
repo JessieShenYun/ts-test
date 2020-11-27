@@ -6,10 +6,11 @@ const { CheckerPlugin } = require('awesome-typescript-loader')
 
 module.exports = {
     entry: {
-        'index': './src/index.ts' // 入口文件
+        'app': './src/index.tsx' // 入口文件
     },
     output: {
         path: path.resolve(process.cwd(), 'publish'),
+        filename: '[name].[contenthash:8].js'
     },
     resolve: {
         extensions: ['.js', '.ts', '.tsx']
@@ -39,7 +40,8 @@ module.exports = {
     ],
     optimization: {
         splitChunks: {
-            chunks: 'all'
+            chunks: 'all', //webpack的拆包
+            name: 'vendor'
         }
     }
 }
